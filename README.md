@@ -1,0 +1,2 @@
+# StockCalculator
+Simple Stock Calculator
