@@ -8,8 +8,4 @@ int main(int argc, char* argv[])
     {
         Application::getInstance().run(stockPrice);
     }
-    else
-    {
-        std::cout << "<--StockCalculator: ERROR on start-up, shutting down...." << std::endl;
-    }
 }
