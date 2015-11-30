@@ -12,7 +12,7 @@ Make sure test_stockcalcultor does not exist.
 
 # Tests
 To compile and run test program which follows basic TDD (Test Driven Design):<br>
-g++ -std=c++0x -o test_stockcalculator stock.cpp trade.cpp application.cpp stockcalculator.cpp<br>
+g++ -std=c++0x -o test_stockcalculator stock.cpp trade.cpp test_stockcalculator.cpp<br>
 Make sure stockcalcultor does not exist.
 
 # Design
