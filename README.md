@@ -16,6 +16,13 @@ g++ -std=c++0x -o test_stockcalculator stock.cpp trade.cpp application.cpp stock
 Make sure stockcalcultor does not exist.
 
 # Design
-TODO
+The design is simple and modular, with clean seperation of the various program actors as such:
+![](https://github.com/marchesir/StockCalculator/blob/master/res/StockCalculatorArch.png)
+The above architecure diagrma shows a simppleovervire of the program.
+
+
+
+
+
 
 
