@@ -20,6 +20,7 @@ Trade::Trade(double tradedPrice, int sharesQuantity)
     m_tradeType = TT_BUY;
 }
 
+// Add trade to static container required for tracing all trades.
 void Trade::addTrade()
 {
     s_tradedData.push_back(m_tradeData);
@@ -30,7 +31,7 @@ void Trade::addTrade()
 // in the last 15 minutes.
 double Trade::calculateVolumeWeightedStockPrice()
 {
-    double stockPrice = 0.0;
+    double stockPrice = -1.00;
 
     // Calculate the summation
     double shareQuantityAcum = 0.00;
@@ -60,7 +61,7 @@ double Trade::calculateVolumeWeightedStockPrice()
 // Calculate geometric mean for all traded prices.
 double Trade::calculateGeometricMeanAllShareIndex()
 {
-    double gmIndex = 0.00;
+    double gmIndex = -1.00;
     double tpTotal = 0.00;
 
     // Get all traded shares and calculate geometric mean.
@@ -75,8 +76,9 @@ double Trade::calculateGeometricMeanAllShareIndex()
     }
     else
     {
-        std::cout << "<-- Trade::calculateGeometricMeanAllShareIndex: ERROR, No Trades " << std::endl;
+        std::cout << "<-- Trade::calculateGeometricMeanAllShareIndex [ERROR: No Trades]" << std::endl;
     }
+
     return gmIndex;
 }
 
