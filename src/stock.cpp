@@ -1,98 +1,127 @@
 #include "stock.h"
+#include <string>
+#include <vector>
+#include <iostream>
 
-// Constructor default to empty Stock entity.
-Stock::Stock()
+// Public methods.
+
+// Constructor.
+Stock::Stock(std::string stockSymbol, double stockPrice, double lastDividend, double fixedDividend, double parValue)
 {
-    m_stockSymbol = StockSymbol::UNDEFINED;
-    m_stockType = StockType::UNDEFINED;
-    m_lastDividend = 0.0;
-    m_fixedDividend = 0.0;
-    m_parValue = 0.0;
-    m_stockPrice = 0.0
+    m_stockSymbol = stockSymbol;
+    m_lastDividend = lastDividend;
+    m_fixedDividend = fixedDividend;
+    m_parValue = parValue;
+    m_stockPrice = stockPrice;
+    m_stockType = ST_COMMON;
 }
 
-// Get Stock Symbol.
-StockSymbol Stock::getStockSymbol()
+// Calculate Dividend Yield.
+double Stock::calculateDividendYield()
+{
+    double dividendYield = -1.00;
+
+    if (m_stockPrice > 0.00)
+    {
+        if (m_stockType == StockType::ST_COMMON)
+        {
+    	      dividendYield = m_lastDividend / m_stockPrice;
+    	  }
+        else if (m_stockType == StockType::ST_PREFERRED)
+        {
+    	      dividendYield = (m_fixedDividend * m_parValue ) / m_stockPrice;
+    	  }
+    }
+    else
+    {
+        std::cout << "<-- Stock::calculateDividendYield [Stock Price not valid]" << std::endl;
+    }
+
+  	return dividendYield;
+}
+
+// Calculate PE Ratio.
+double Stock::calculatePeRatio()
+{
+    double peRatio = -1.00;
+
+    if (m_stockPrice > 0.00 && calculateDividendYield() > 0.00)
+    {
+		        peRatio = m_stockPrice / calculateDividendYield();
+    }
+    else
+    {
+        std::cout << "<-- Stock::calculatePeRatio [Stock Price not valid]" << std::endl;
+    }
+
+		return peRatio;
+}
+
+// Get last dividend.
+double Stock::getLastDividend()
+{
+    return (m_lastDividend == -1.00? 0.00: m_lastDividend);
+}
+
+// Get fixed dividend.
+double Stock::getFixedDividend()
+{
+    return (m_fixedDividend == -1.00? 0.00: m_fixedDividend);
+}
+
+// Get par value.
+double Stock::getParValue()
+{
+    return (m_parValue == -1.00? 0.00: m_parValue);
+}
+
+// Get stock price.
+double Stock::getStockPrice()
+{
+    return m_stockPrice;
+}
+
+// Get stockSymbol.
+std::string Stock::getStockSymbol()
 {
     return m_stockSymbol;
 }
-// Set Stock Symbol.
-void Stock::setStockSymbol(const StockSymbol& stockSymbol)
+
+// Get StockType as string.
+std::string Stock::getStockType(StockType stockType)
 {
-    m_stockSymbol = stockSymbol;
+    std::string ret = "UNDEFINED";
+    switch(stockType)
+    {
+        case ST_COMMON:
+        {
+            ret = "COMMON";
+            break;
+        }
+        case ST_PREFERRED:
+        {
+            ret = "PREFERRED";
+            break;
+        }
+        default: break;
+    }
+    return ret;
 }
 
-// Get Stock Type.
-StockType Stock::getStockType()
-{
-    return m_stockType;
-}
-// Set Stock Type.
-void Stock::setStockType(const StockType& stockType)
+// Set StockType.
+void Stock::setStockType(StockType stockType)
 {
     m_stockType = stockType;
 }
 
-// Get Last Dividend.
-double Stock::getLastDividend(const double& lastDividend)
+// Print Stock data to standard output.
+void Stock::toStandardOutput()
 {
-    return m_lastDividend;
+    std::cout << "<-- STOCK [STOCK SYMBOL=" << m_stockSymbol
+              << ", TYPE=" << getStockType(m_stockType)
+              << ", LAST DIVIDEND=" << getLastDividend()
+              << ", FIXED DIVIDEND=" << getFixedDividend()
+              << ", PAR VALUE=" << getParValue() << "]" << std::endl;
+    std::cout << "<-- STOCK [DIVIDEND YIELD=" << calculateDividendYield() << "]" << std::endl;
+    std::cout << "<-- STOCK [P/E RATIO=" << calculatePeRatio() << "]" << std::endl;
 }
-// Set Last Dividend.
-void Stock::setLastDividend(const double& lastDividend)
-{
-    m_lastDividend = lastDividend;
-}
-
-// Get Fixed Dividend.
-double Stock::getFixedDividend(const double& fixedDividend)
-{
-    return m_fixedDividend;
-}
-// Set Fixed Dividend.
-void Stock::setFixedDividend(const double& fixedDividend)
-{
-    m_fixedDividend = fixedDividend;
-}
-
-// Get Par Value
-double Stock::getParValue(const double& parValue)
-{
-    return m_parValue
-}
-// Set PE Ratio.
-void Stock::setPeRatio(const double& peRatio)
-{
-    m_peRatio = peRatio;
-}
-
-// Get Stock Price.
-double Stock::getStockPrice(const double& stockPrice)
-{
-    m_stockPrice = stockPrice;
-}
-// Set Stock Price.
-void setStockPrice(const double& stockPrice)
-{
-    m_stockPrice = stockPrice;
-}
-
-// Calculate Dividend Yield.
-double Stock::alculateDividendYield()
-{
-    double dividendYield = -1.0;
-    if (m_stockPrice > 0.0) // Avoid zero division.
-    {
-  	    if (m_stockType == StockType::COMMON)
-        {
-  		      dividendYield = m_lastDividend / stockPrice;
-  			}
-        else if (m_stockType == StockType::PREFERRED)
-        {
-  			    dividendYield = (m_fixedDividend * parValue ) / m_stockPrice;
-  			}
-  		}
-  		return dividendYield;
-}
-
-double calculatePeValue();

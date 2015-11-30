@@ -1,15 +1,17 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include <iostream>
+
 class Application
 {
 public:
     static Application& getInstance();
-    int run();
+    int run(double inputPrice);
+    double parseCmdLine(int argc, char* argv[]);
 private:
     // Utility methods.
-    int parseCmdLine(int argc, char* argv[]);
-    void printOutput();
+    void printUsage();
 
     // Private constructor/Destructor required by Singleton pattern.
     Application() {};
@@ -18,5 +20,5 @@ private:
     // Avoid copy constructor.
     Application(const Application&);
     Application& operator=(const Application&);
-}
+};
 #endif

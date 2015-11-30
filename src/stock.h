@@ -3,21 +3,10 @@
 
 #include <string>
 
-typedef enum StockSymbol
-{
-    TEA,
-    POP,
-    ALE,
-    GIN,
-    JOE,
-    UNDEFINED
-} StockSymbol;
-
 typedef enum StockType
 {
-    COMMON,
-    PREFERRED,
-    UNDEFINED
+    ST_COMMON,
+    ST_PREFERRED,
 } StockType;
 
 // Class that represents Stock enity, with appropiate calculations methods.
@@ -25,34 +14,28 @@ class Stock
 {
 public:
         // Constructor/Destructor.
-        Stock();
+        Stock(std::string stockSymbol, double stockPrice, double lastDividend, double fixedDividend, double parValue);
         ~Stock() {};
-
-        // Getters.
-        StockSymbol getStockSymbol();
-        StockType getStockType();
-        double getLastDividend(const double& lastDividend);
-        double getFixedDividend(const double& fixedDividend);
-        double getParValue(const double& peRatio);
-        double getStockPrice(const double& stockPrice);
-
-        // Setters.
-        void setStockSymbol(const StockSymbol& stockSymbol);
-        void setStockType(const StockType& stockType);
-        void setLastDividend(const double& lastDividend);
-        void setFixedDividend(const double& fixedDividend);
-        void setParValue(const double& parValue);
-        void setStockPrice(const double& stockPrice);
 
         // Calculations.
         double calculateDividendYield();
         double calculatePeRatio();
 
-        // Output.
-        std::string toString();
+        // Getters.
+        double getLastDividend();
+        double getFixedDividend();
+        double getParValue();
+        double getStockPrice();
+        std::string getStockType(StockType stockType);
+        std::string getStockSymbol();
 
+        // Setters.
+        void setStockType(StockType stockType);
+
+        // Print to standard output.
+        void toStandardOutput();
 private:
-    StockSymbol m_stockSymbol;
+    std::string m_stockSymbol;
     StockType m_stockType;
     double m_lastDividend;
     double m_fixedDividend;
@@ -60,7 +43,6 @@ private:
     double m_stockPrice;
 
     // Avoid copy constructor.
-    Stock(const Stock&);
     Stock& operator=(const Stock&);
-}
+};
 #endif
