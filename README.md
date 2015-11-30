@@ -17,8 +17,8 @@ Make sure stockcalcultor does not exist.
 
 # Design
 The design is simple and modular, with clean seperation of the various program actors as such:
-![](https://github.com/marchesir/StockCalculator/blob/master/res/StockCalculatorArch.png)
-The above architecure diagrma shows a simppleovervire of the program.
+![](https://github.com/marchesir/StockCalculator/blob/master/res/StockCalculatorArch.png)<br>
+The above architecture diagram shows a simple overview of the program.
 
 
 
