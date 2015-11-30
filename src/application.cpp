@@ -38,20 +38,20 @@ double Application::parseCmdLine(int argc, char* argv[])
             }
             catch(...)
             {
-                std::cout << "<--Application::parseCmdLine: ERROR Input invalid, failed conversion into double" << std::endl;
+                std::cout << "<--Application::parseCmdLine [ERROR: Input invalid, failed conversion into double]" << std::endl;
                 printUsage();
             }
 
             if (ret == 0.00)
             {
-                std::cout << "<--Application::parseCmdLine: ERROR: Input invalid, run stockprice must be positive number" << std::endl;
+                std::cout << "<--Application::parseCmdLine [ERROR: Input invalid, run stockprice must be positive number]" << std::endl;
                 printUsage();
             }
 
         }
         else
         {
-            std::cout << "<--Application::parseCmdLine: ERROR: Input invalid, stockprice invalid format" << std::endl;
+            std::cout << "<--Application::parseCmdLine [ERROR: Input invalid, stockprice invalid format]" << std::endl;
             printUsage();
         }
     }
@@ -114,5 +114,5 @@ int Application::run(double inputPrice)
 // Print to std console usage message.
 void Application::printUsage()
 {
-    std::cout << "Usage: stockcalculator stockprice [where stockprice is positive double with precision of 2, eg. 99.99]" << std::endl;
+    std::cout << "<-- Application::printUsage [stockcalculator stockprice {where stockprice is positive double with precision of 2, eg. 99.99}]" << std::endl;
 }

@@ -34,7 +34,7 @@ double Stock::calculateDividendYield()
     }
     else
     {
-        std::cout << "<-- Stock::calculateDividendYield [Stock Price not valid]" << std::endl;
+        std::cout << "<-- Stock::calculateDividendYield [ERROR: Stock Price not valid]" << std::endl;
     }
 
   	return dividendYield;
@@ -51,7 +51,7 @@ double Stock::calculatePeRatio()
     }
     else
     {
-        std::cout << "<-- Stock::calculatePeRatio [Stock Price not valid]" << std::endl;
+        std::cout << "<-- Stock::calculatePeRatio [ERROR: Stock Price not valid]" << std::endl;
     }
 
 		return peRatio;
