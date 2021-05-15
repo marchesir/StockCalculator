@@ -1,9 +1,9 @@
-# StockCalculator
+# Introduction
 1) For a given stock:<br>
-  i. Given any price as input, calculate the dividend yield;<br>
-  ii. Given any price as input, calculate the P/E Ratio;<br>
-  iii. Record a trade, with timestamp, quantity of shares, buy or sell indicator and traded price;<br>
-  iv. Calculate Volume Weighted Stock Price based on trades in past 15 minutes;<br>
+  a. Given any price as input, calculate the dividend yield;<br>
+  b. Given any price as input, calculate the P/E Ratio;<br>
+  c. Record a trade, with timestamp, quantity of shares, buy or sell indicator and traded price;<br>
+  d. Calculate Volume Weighted Stock Price based on trades in past 15 minutes;<br>
 2) Calculate the GBCE All Share Index using the geometric mean of prices for all stocks;<br>
 
 # Compile and Run
@@ -19,10 +19,3 @@ Make sure stockcalcultor does not exist.
 The design is simple and modular, with clean seperation of the various program actors as such:
 ![](https://github.com/marchesir/StockCalculator/blob/master/res/StockCalculatorArch.png)<br>
 The above architecture diagram shows a simple overview of the program.
-
-
-
-
-
-
-
